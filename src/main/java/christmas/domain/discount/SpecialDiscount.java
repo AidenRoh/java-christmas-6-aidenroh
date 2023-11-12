@@ -23,6 +23,6 @@ public class SpecialDiscount implements DiscountPolicy {
 
 	@Override
 	public boolean checkAvailability(LocalDate date) {
-		return (date.getDayOfWeek().equals(SUNDAY) || date == CHRISTMAS);
+		return (date.getDayOfWeek().equals(SUNDAY) || date.isEqual(CHRISTMAS));
 	}
 }

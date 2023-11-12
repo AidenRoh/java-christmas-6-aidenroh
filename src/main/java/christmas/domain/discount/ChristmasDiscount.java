@@ -1,7 +1,6 @@
 package christmas.domain.discount;
 
 import static christmas.enums.Discount.CHRISTMAS_DISCOUNT;
-import static christmas.enums.Discount.SPECIAL_DISCOUNT;
 
 import christmas.enums.Discount;
 import christmas.enums.Menu;
@@ -20,14 +19,14 @@ public class ChristmasDiscount implements DiscountPolicy {
 	public Map<Discount, Integer> discount(Map<Menu, Integer> order,
 										   Map<Discount, Integer> discountDetail) {
 		int discountAmount = CHRISTMAS_DISCOUNT.getDiscountAmount() + discountIncrement;
-		discountDetail.put(SPECIAL_DISCOUNT, discountAmount);
+		discountDetail.put(CHRISTMAS_DISCOUNT, discountAmount);
 		return discountDetail;
 	}
 
 	@Override
 	public boolean checkAvailability(LocalDate date) {
 		setDiscountIncrement(date);
-		if (date == EVENT_START_DAY || date == EVENT_END_DAY) {
+		if (date.isEqual(EVENT_START_DAY) || date.isEqual(EVENT_END_DAY)) {
 			return true;
 		}
 		if (EVENT_START_DAY.isBefore(date) && date.isAfter(EVENT_END_DAY)) {
