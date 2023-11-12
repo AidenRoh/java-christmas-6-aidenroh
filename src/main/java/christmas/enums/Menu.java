@@ -17,12 +17,12 @@ public enum Menu {
 	RED_WINE("레드와인", "DRINK", 60_000),
 	CHAMPAGNE("샴페인", "DRINK", 25_000);
 
-	private final String title;
+	private final String item;
 	private final String courseType;
 	private final int price;
 
 	Menu(String food, String courseType, int price) {
-		this.title = food;
+		this.item = food;
 		this.courseType = courseType;
 		this.price = price;
 	}
@@ -35,9 +35,13 @@ public enum Menu {
 		return this.price;
 	}
 
-	public static Menu findMenu(String menuTitle) {
+	public String getItem() {
+		return this.item;
+	}
+
+	public static Menu findMenu(String item) {
 		return Arrays.stream(Menu.values())
-				.filter(menu -> Objects.equals(menu.title, menuTitle))
+				.filter(menu -> Objects.equals(menu.item, item))
 				.findAny()
 				.orElseThrow(IllegalArgumentException::new);
 	}

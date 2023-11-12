@@ -1,5 +1,7 @@
 package christmas.enums;
 
+import static christmas.enums.Delimiter.DISCOUNT_SUFFIX;
+
 public enum Discount {
 	CHRISTMAS_DISCOUNT("크리스마스 디데이", "GLOBAL", 1000),
 	WEEKDAY_DISCOUNT("평일", "DESSERT", 2023),
@@ -7,12 +9,12 @@ public enum Discount {
 	SPECIAL_DISCOUNT("특별", "GLOBAL", 1000);
 
 	private final String title;
-	private final String targetCouseType;
+	private final String targetCourseType;
 	private final int discountAmount;
 
 	Discount(String title, String appliedArea, int discountAmount) {
 		this.title = title;
-		this.targetCouseType = appliedArea;
+		this.targetCourseType = appliedArea;
 		this.discountAmount = discountAmount;
 	}
 
@@ -20,8 +22,12 @@ public enum Discount {
 		return discountAmount;
 	}
 
-	public String getTargetCouseType() {
-		return this.targetCouseType;
+	public String getTargetCourseType() {
+		return this.targetCourseType;
+	}
+
+	public String getTitle() {
+		return "%s %s".formatted(this.title, DISCOUNT_SUFFIX.getDelimiter());
 	}
 
 }
