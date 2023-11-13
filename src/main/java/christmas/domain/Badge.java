@@ -22,7 +22,7 @@ public enum Badge {
 			return Badge.TREE;
 		}
 		if (benefitAmount >= STAR.minimumRequire) {
-			return Badge.SANTA;
+			return Badge.STAR;
 		}
 		return Badge.NONE;
 	}
