@@ -1,8 +1,11 @@
 package christmas.domain;
 
-import christmas.enums.Menu;
-import java.util.HashMap;
+import christmas.util.Convertor;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Benefit {
 	private final DiscountDetail discountDetail;
@@ -13,35 +16,37 @@ public class Benefit {
 		this.giftDetail = giftDetail;
 	}
 
-	public HashMap<String, Integer> generateGiftMenu() {
-		HashMap<String, Integer> giftMenu = new HashMap<>();
-		Map<Menu, Integer> gift = giftDetail.getGiftGoods();
-
-		gift.forEach((key, value) -> giftMenu.put(key.getItem(), value));
-		return giftMenu;
+	public Map<String, Integer> generateGiftMenu() {
+		return writeMapDetail(giftDetail::getGiftGoods, Convertor::menuItemEnumToMap);
 	}
 
-	public HashMap<String, Integer> generateBenefitDetails() {
-		HashMap<String, Integer> benefitDetails = new HashMap<>();
-		Map<Menu, Integer> gift = giftDetail.getGiftGoods();
+	public Map<String, Integer> generateBenefitDetails() {
+		Map<String, Integer> discountMap =
+				writeMapDetail(discountDetail::discountDetail, Convertor::discountEnumToMap);
+		Map<String, Integer> giftMap =
+				writeMapDetail(giftDetail::getGiftGoods, Convertor::menuPriceEnumToMap);
 
-		discountDetail.discountDetail().forEach((key, value) -> benefitDetails.put(key.getTitle(), value));
-		gift.forEach((key, value) -> benefitDetails.put("증정 이벤트", key.getPrice()));
-		return benefitDetails;
+		return Stream.of(giftMap, discountMap)
+				.flatMap(map -> map.entrySet().stream())
+				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 	}
 
 	public int generateTotalBenefitAmount() {
 		return discountDetail.calculateTotalDiscountAmount() + giftDetail.calculateGiftPrice();
 	}
 
-	public String generateBadge() {
-		return Badge.getAvailableBadge(generateTotalBenefitAmount()).getBadgeName();
+	public int generateFinalPayment(int orderAmount) {
+		return orderAmount - discountDetail.calculateTotalDiscountAmount();
 	}
 
-//	private static <T> HashMap<String, Integer> generateDetails(Supplier<T> detail,
-//																Function<T, HashMap<String, Integer>> conversion) {
-//		T detailMap = detail.get();
-//		return conversion.apply(detailMap);
-//	}
+	public Badge generateBadge() {
+		return Badge.getAvailableBadge(generateTotalBenefitAmount());
+	}
 
+	private static <T> Map<String, Integer> writeMapDetail(
+			Supplier<T> detail,
+			Function<T, Map<String, Integer>> conversion) {
+		T detailMap = detail.get();
+		return conversion.apply(detailMap);
+	}
 }
