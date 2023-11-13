@@ -34,11 +34,10 @@ public class WeekendDiscount implements DiscountPolicy {
 				.sum();
 	}
 
-
 	private boolean isTargetCourse(Map.Entry<Menu, Integer> userOrder) {
 		return userOrder.getKey()
 				.getCourseType()
-				.equals(WEEKEND_DISCOUNT.getTargetCourseType());
+				.equals(WEEKEND_DISCOUNT.getTargetCourse());
 	}
 
 	private int calculateDiscountAmount(Map.Entry<Menu, Integer> userOrder) {

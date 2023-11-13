@@ -23,7 +23,6 @@ public class DiscountCenter {
 		if (viablePolicies.isEmpty() || (orderMenu.calculateTotalOrderAmount() <= 10000)) {
 			return new DiscountDetail(discountDetail);
 		}
-
 		viablePolicies.forEach(discountPolicy -> discountPolicy.discount(orderMenu.getOrderDetail(), discountDetail));
 		return new DiscountDetail(discountDetail);
 	}

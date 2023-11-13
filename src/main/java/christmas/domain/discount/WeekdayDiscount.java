@@ -40,7 +40,7 @@ public class WeekdayDiscount implements DiscountPolicy {
 	private boolean isTargetCourse(Map.Entry<Menu, Integer> userOrder) {
 		return userOrder.getKey()
 				.getCourseType()
-				.equals(WEEKDAY_DISCOUNT.getTargetCourseType());
+				.equals(WEEKDAY_DISCOUNT.getTargetCourse());
 	}
 
 	private int calculateDiscountAmount(Map.Entry<Menu, Integer> userOrder) {
