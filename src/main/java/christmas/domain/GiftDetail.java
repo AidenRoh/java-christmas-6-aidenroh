@@ -19,6 +19,9 @@ public class GiftDetail {
 	}
 
 	public int calculateGiftPrice() {
+		if (giftGoods.isEmpty()) {
+			return 0;
+		}
 		return giftGoods.entrySet().stream()
 				.mapToInt(item -> item.getKey().getPrice() * item.getValue())
 				.sum();

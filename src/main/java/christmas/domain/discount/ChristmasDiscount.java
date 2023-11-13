@@ -14,7 +14,6 @@ public class ChristmasDiscount implements DiscountPolicy {
 
 	private int discountIncrement = 0;
 
-
 	@Override
 	public Map<Discount, Integer> discount(Map<Menu, Integer> order,
 										   Map<Discount, Integer> discountDetail) {
@@ -29,14 +28,10 @@ public class ChristmasDiscount implements DiscountPolicy {
 		if (date.isEqual(EVENT_START_DAY) || date.isEqual(EVENT_END_DAY)) {
 			return true;
 		}
-		if (EVENT_START_DAY.isBefore(date) && date.isAfter(EVENT_END_DAY)) {
-			return true;
-		}
-		return false;
+		return EVENT_START_DAY.isBefore(date) && date.isAfter(EVENT_END_DAY);
 	}
 
 	private void setDiscountIncrement(LocalDate date) {
 		this.discountIncrement = (date.getDayOfMonth() - EXCLUDE_FIRST_DAY) * 100;
 	}
-
 }
