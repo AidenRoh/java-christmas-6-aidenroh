@@ -1,11 +1,13 @@
-package christmas.domain.discount;
+package christmas.domain;
 
 import static org.junit.jupiter.api.Named.named;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-import christmas.domain.DiscountDetail;
-import christmas.domain.EventPeriod;
-import christmas.domain.OrderDetail;
+import christmas.domain.discount.ChristmasDiscount;
+import christmas.domain.discount.DiscountCenter;
+import christmas.domain.discount.SpecialDiscount;
+import christmas.domain.discount.WeekdayDiscount;
+import christmas.domain.discount.WeekendDiscount;
 import christmas.enums.Discount;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -17,7 +19,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-class DiscountCenterTest {
+class DiscountTest {
 	/**
 	 * 테스트 목록 1. 10000 원 이하의 값이 나올시 적용할 수 있는 할인 정책이 없다 2. 날짜에 맞는 할인 정책이 들어온다
 	 */
@@ -37,16 +39,16 @@ class DiscountCenterTest {
 				),
 				arguments(
 						named("평일/스페셜데이", EventPeriod.valueOf(3)),
-						named("초코케이크", OrderDetail.of(Map.of("초코케이크", 1))),
+						named("초코케이크", OrderDetail.of(Map.of("초코케이크", 2))),
 						named("평일, 스페셜, 크리스마스 할인",
-								Map.of(Discount.WEEKDAY_DISCOUNT, 2023,
+								Map.of(Discount.WEEKDAY_DISCOUNT, 4046,
 										Discount.SPECIAL_DISCOUNT, 1000,
 										Discount.CHRISTMAS_DISCOUNT, 1200))
 				),
 				arguments(
 						named("평일", EventPeriod.valueOf(26)),
-						named("초코케이크", OrderDetail.of(Map.of("초코케이크", 1))),
-						named("평일 할인", Map.of(Discount.WEEKDAY_DISCOUNT, 2023))
+						named("초코케이크", OrderDetail.of(Map.of("초코케이크", 3))),
+						named("평일 할인", Map.of(Discount.WEEKDAY_DISCOUNT, 6069))
 				)
 		);
 	}
@@ -68,5 +70,4 @@ class DiscountCenterTest {
 		//then
 		Assertions.assertThat(discountDetail.discountDetail()).isEqualTo(expectDiscount);
 	}
-
 }

@@ -2,6 +2,7 @@ package christmas.domain;
 
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
+import christmas.enums.Badge;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayNameGeneration;
