@@ -21,7 +21,7 @@ class BadgeTest {
 		);
 	}
 
-	@ParameterizedTest(name = "총혜택 금액이 {0}일 때, {1} 배지를 반환")
+	@ParameterizedTest(name = "총혜택 금액이 {0}일 때, {1} 반환")
 	@MethodSource("badgeParam")
 	void 총혜택_금액에_맞는_배지를_없다면_없음을_반환합니다(int totalBenefitAmount, String badge) {
 		//given
