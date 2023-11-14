@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 public class DiscountCenter {
+
 	private final List<DiscountPolicy> discountPolicies;
 
 	public DiscountCenter(DiscountPolicy... discountPolicies) {

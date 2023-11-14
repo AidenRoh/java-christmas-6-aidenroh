@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public enum Menu {
+
 	MUSHROOM_SOUP("양송이수프", "APPETIZER", 6_000),
 	TAPAS("타파스", "APPETIZER", 5_500),
 	CAESAR_SALAD("시저샐러드", "APPETIZER", 8_000),

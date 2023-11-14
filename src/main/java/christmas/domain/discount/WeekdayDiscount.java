@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 public class WeekdayDiscount implements DiscountPolicy {
+
 	private static final List<DayOfWeek> WEEKDAY = List.of(SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY);
 
 	@Override

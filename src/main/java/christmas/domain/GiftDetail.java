@@ -5,6 +5,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public class GiftDetail {
+
 	private static final int GIFT_CONDITION = 120_000;
 	private static final int GIFT_AMOUNT = 1;
 	private final Map<Menu, Integer> giftGoods;

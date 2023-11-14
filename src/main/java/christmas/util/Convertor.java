@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Convertor {
+
 	public static Map<String, Integer> menuItemEnumToMap(Map<Menu, Integer> detail) {
 		Map<String, Integer> giftMenu = new HashMap<>();
 

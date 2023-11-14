@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import christmas.enums.Badge;
 import christmas.util.Convertor;
 import java.util.Map;
 import java.util.function.Function;
@@ -8,6 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Benefit {
+
 	private final DiscountDetail discountDetail;
 	private final GiftDetail giftDetail;
 
@@ -36,7 +38,7 @@ public class Benefit {
 	}
 
 	public int generateFinalPayment(int orderAmount) {
-		return orderAmount - discountDetail.calculateTotalDiscountAmount();
+		return discountDetail.calculateFinalPayment(orderAmount);
 	}
 
 	public Badge generateBadge() {

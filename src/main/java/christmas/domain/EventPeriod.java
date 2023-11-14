@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class EventPeriod {
+
 	private static final int INDEX_GAP = 1;
 	private static final int EVENT_START_DATE = 1;
 	private static final int EVENT_START_MONTH = 12;
