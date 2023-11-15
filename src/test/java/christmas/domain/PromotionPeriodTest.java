@@ -2,12 +2,14 @@ package christmas.domain;
 
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
+import christmas.exception.IllegalDateException;
 import java.time.LocalDate;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -32,8 +34,13 @@ class PromotionPeriodTest {
 		Assertions.assertThat(testingDate).isEqualTo(expectDate);
 	}
 
-	// 이벤트 기간과 맞지 않은 입력값에 대해 오류가 나온다.
-	//1. 음수
-	//2. 범위에 벗어난 숫자
-	//3. 공
+	@Test
+	void 잘못된_입력값에_대한_도메인_예외테스트() {
+		//given
+		int testingInt = 35;
+		//when
+		Assertions.assertThatThrownBy(() -> PromotionPeriod.valueOf(testingInt))
+				//then
+				.isInstanceOf(IllegalDateException.class);
+	}
 }
