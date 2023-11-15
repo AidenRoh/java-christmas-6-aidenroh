@@ -1,20 +1,20 @@
 package christmas.domain.discount;
 
-import static christmas.enums.Discount.WEEKDAY_DISCOUNT;
+import static christmas.domain.constant.Discount.WEEKDAY_DISCOUNT;
 import static java.time.DayOfWeek.MONDAY;
 import static java.time.DayOfWeek.SUNDAY;
 import static java.time.DayOfWeek.THURSDAY;
 import static java.time.DayOfWeek.TUESDAY;
 import static java.time.DayOfWeek.WEDNESDAY;
 
-import christmas.enums.Discount;
-import christmas.enums.Menu;
+import christmas.domain.constant.Discount;
+import christmas.domain.constant.Menu;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
-public class WeekdayDiscount implements DiscountPolicy {
+public final class WeekdayDiscount implements DiscountPolicy {
 
 	private static final List<DayOfWeek> WEEKDAY = List.of(SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY);
 

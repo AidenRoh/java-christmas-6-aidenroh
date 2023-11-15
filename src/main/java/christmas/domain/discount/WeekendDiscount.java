@@ -1,17 +1,17 @@
 package christmas.domain.discount;
 
-import static christmas.enums.Discount.WEEKEND_DISCOUNT;
+import static christmas.domain.constant.Discount.WEEKEND_DISCOUNT;
 import static java.time.DayOfWeek.FRIDAY;
 import static java.time.DayOfWeek.SATURDAY;
 
-import christmas.enums.Discount;
-import christmas.enums.Menu;
+import christmas.domain.constant.Discount;
+import christmas.domain.constant.Menu;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
-public class WeekendDiscount implements DiscountPolicy {
+public final class WeekendDiscount implements DiscountPolicy {
 
 	private static final List<DayOfWeek> WEEKEND = List.of(FRIDAY, SATURDAY);
 
