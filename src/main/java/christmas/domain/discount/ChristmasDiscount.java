@@ -1,13 +1,13 @@
 package christmas.domain.discount;
 
-import static christmas.enums.Discount.CHRISTMAS_DISCOUNT;
+import static christmas.domain.constant.Discount.CHRISTMAS_DISCOUNT;
 
-import christmas.enums.Discount;
-import christmas.enums.Menu;
+import christmas.domain.constant.Discount;
+import christmas.domain.constant.Menu;
 import java.time.LocalDate;
 import java.util.Map;
 
-public class ChristmasDiscount implements DiscountPolicy {
+public final class ChristmasDiscount implements DiscountPolicy {
 
 	private static final LocalDate EVENT_START_DAY = LocalDate.of(2023, 12, 1);
 	private static final LocalDate EVENT_END_DAY = LocalDate.of(2023, 12, 25);

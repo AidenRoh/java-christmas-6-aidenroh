@@ -1,6 +1,6 @@
 package christmas.domain;
 
-import christmas.enums.Menu;
+import christmas.domain.constant.Menu;
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -30,6 +30,10 @@ public class GiftDetail {
 
 	public Map<Menu, Integer> getGiftGoods() {
 		return this.giftGoods;
+	}
+
+	public boolean checkEmpty() {
+		return giftGoods.isEmpty();
 	}
 
 	private boolean checkAvailability(OrderDetail orderAmount) {

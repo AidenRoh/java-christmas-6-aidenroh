@@ -1,9 +1,7 @@
-package christmas.domain.discount;
+package christmas.domain;
 
-import christmas.domain.DiscountDetail;
-import christmas.domain.EventPeriod;
-import christmas.domain.OrderDetail;
-import christmas.enums.Discount;
+import christmas.domain.constant.Discount;
+import christmas.domain.discount.DiscountPolicy;
 import java.time.LocalDate;
 import java.util.EnumMap;
 import java.util.List;
@@ -17,7 +15,7 @@ public class DiscountCenter {
 		this.discountPolicies = List.of(discountPolicies);
 	}
 
-	public DiscountDetail createDiscountDetail(OrderDetail orderMenu, EventPeriod reservationDate) {
+	public DiscountDetail createDiscountDetail(OrderDetail orderMenu, PromotionPeriod reservationDate) {
 		Map<Discount, Integer> discountDetail = new EnumMap<>(Discount.class);
 		List<DiscountPolicy> viablePolicies = retainViablePolicies(reservationDate);
 
@@ -28,7 +26,7 @@ public class DiscountCenter {
 		return new DiscountDetail(discountDetail);
 	}
 
-	private List<DiscountPolicy> retainViablePolicies(EventPeriod reservation) {
+	private List<DiscountPolicy> retainViablePolicies(PromotionPeriod reservation) {
 		LocalDate date = reservation.getDate();
 		List<DiscountPolicy> viablePolicies = this.discountPolicies.stream()
 				.filter(policy -> policy.checkAvailability(date))
