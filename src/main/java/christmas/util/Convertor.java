@@ -88,7 +88,7 @@ public class Convertor {
 
 	private static String[] splitByHyphen(String value) {
 		INVALID_FORMAT.findErrorBy(() -> UIValidator.validateMenuFormat(value));
-		BAD_DELIMITER_HYPHEN.findErrorBy(() -> UIValidator.validateBadByHyphen(value));
+		BAD_DELIMITER_HYPHEN.findErrorBy(() -> UIValidator.validateBadHyphen(value));
 		return value.split(DELIMITER_HYPHEN);
 	}
 }

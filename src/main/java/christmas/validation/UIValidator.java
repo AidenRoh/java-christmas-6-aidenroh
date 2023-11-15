@@ -50,7 +50,7 @@ public class UIValidator {
 		return Arrays.stream(menus).anyMatch(String::isBlank);
 	}
 
-	public static boolean validateBadByHyphen(String input) {
+	public static boolean validateBadHyphen(String input) {
 		return input.charAt(0) == '-' || input.charAt(input.length() - 1) == '-';
 	}
 
