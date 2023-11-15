@@ -1,6 +1,4 @@
-package christmas.enums;
-
-import static christmas.enums.Delimiter.DISCOUNT_SUFFIX;
+package christmas.domain.constant;
 
 public enum Discount {
 
@@ -8,6 +6,8 @@ public enum Discount {
 	WEEKDAY_DISCOUNT("평일", "DESSERT", 2023),
 	WEEKEND_DISCOUNT("주말", "MAIN_DISH", 2023),
 	SPECIAL_DISCOUNT("특별", "GLOBAL", 1000);
+
+	private static final String DISCOUNT_SUFFIX = "할인";
 
 	private final String title;
 	private final String targetCourse;
@@ -28,7 +28,7 @@ public enum Discount {
 	}
 
 	public String getTitle() {
-		return "%s %s".formatted(this.title, DISCOUNT_SUFFIX.getDelimiter());
+		return "%s %s".formatted(this.title, DISCOUNT_SUFFIX);
 	}
 
 }
