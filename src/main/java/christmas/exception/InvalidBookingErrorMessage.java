@@ -17,7 +17,7 @@ public enum InvalidBookingErrorMessage {
 
 	public void findErrorBy(Supplier<Boolean> condition) {
 		if (condition.get()) {
-			throw new InvalidDateException(this.message);
+			throw new IllegalDateException(this.message);
 		}
 	}
 }
