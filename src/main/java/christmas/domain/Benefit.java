@@ -1,6 +1,6 @@
 package christmas.domain;
 
-import christmas.enums.Badge;
+import christmas.domain.constant.Badge;
 import christmas.util.Convertor;
 import java.util.Map;
 import java.util.function.Function;
@@ -18,15 +18,11 @@ public class Benefit {
 		this.giftDetail = giftDetail;
 	}
 
-	public Map<String, Integer> generateGiftMenu() {
-		return writeMapDetail(giftDetail::getGiftGoods, Convertor::menuItemEnumToMap);
-	}
-
 	public Map<String, Integer> generateBenefitDetails() {
 		Map<String, Integer> discountMap =
-				writeMapDetail(discountDetail::discountDetail, Convertor::discountEnumToMap);
+				convertMap(discountDetail::discountDetail, Convertor::discountToStringMap);
 		Map<String, Integer> giftMap =
-				writeMapDetail(giftDetail::getGiftGoods, Convertor::menuPriceEnumToMap);
+				convertMap(giftDetail::getGiftGoods, Convertor::menuPriceToStringMap);
 
 		return Stream.of(giftMap, discountMap)
 				.flatMap(map -> map.entrySet().stream())
@@ -34,7 +30,7 @@ public class Benefit {
 	}
 
 	public int generateTotalBenefitAmount() {
-		return discountDetail.calculateTotalDiscountAmount() + giftDetail.calculateGiftPrice();
+		return -(discountDetail.calculateTotalDiscountAmount() + giftDetail.calculateGiftPrice());
 	}
 
 	public int generateFinalPayment(int orderAmount) {
@@ -45,9 +41,8 @@ public class Benefit {
 		return Badge.getAvailableBadge(generateTotalBenefitAmount());
 	}
 
-	private static <T> Map<String, Integer> writeMapDetail(
-			Supplier<T> detail,
-			Function<T, Map<String, Integer>> conversion) {
+	private <T> Map<String, Integer> convertMap(Supplier<T> detail,
+												Function<T, Map<String, Integer>> conversion) {
 		T detailMap = detail.get();
 		return conversion.apply(detailMap);
 	}
