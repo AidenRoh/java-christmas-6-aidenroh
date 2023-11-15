@@ -42,6 +42,4 @@ public class PromotionController {
 		outputView.print(gift);
 		outputView.print(order, benefit);
 	}
-
-
 }

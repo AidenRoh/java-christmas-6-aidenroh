@@ -30,5 +30,4 @@ public enum Discount {
 	public String getTitle() {
 		return "%s %s".formatted(this.title, DISCOUNT_SUFFIX);
 	}
-
 }
