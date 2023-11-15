@@ -1,8 +1,8 @@
-package christmas.domain;
+package christmas.enums;
 
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-import christmas.enums.Badge;
+import christmas.domain.constant.Badge;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayNameGeneration;

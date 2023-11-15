@@ -5,6 +5,7 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 import java.time.LocalDate;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,7 +13,8 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-class EventPeriodTest {
+@DisplayName("[EventPeriod] 이벤트 날짜 테스트")
+class PromotionPeriodTest {
 	private static Stream<Arguments> eventDateParam() {
 		return Stream.of(
 				arguments(1, LocalDate.of(2023, 12, 1))
@@ -23,7 +25,7 @@ class EventPeriodTest {
 	@MethodSource("eventDateParam")
 	void integer_입력값을_받을_때_입력값에_맞는_날짜를_반환합니다(int input, LocalDate expectDate) {
 		//given
-		EventPeriod testingInput = EventPeriod.valueOf(input);
+		PromotionPeriod testingInput = PromotionPeriod.valueOf(input);
 		//when
 		LocalDate testingDate = testingInput.getDate();
 		//then

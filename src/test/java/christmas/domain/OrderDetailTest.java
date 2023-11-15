@@ -2,10 +2,11 @@ package christmas.domain;
 
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
-import christmas.enums.Menu;
+import christmas.domain.constant.Menu;
 import java.util.Map;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,6 +14,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
+@DisplayName("[OrderDetail] 상품 주문 테스트")
 class OrderDetailTest {
 
 	/**
