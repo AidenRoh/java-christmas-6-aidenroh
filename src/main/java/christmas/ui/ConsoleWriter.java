@@ -10,10 +10,6 @@ public sealed class ConsoleWriter permits InputView, OutputView {
 		System.out.println(data);
 	}
 
-	protected void lineSpace() {
-		this.println(System.lineSeparator());
-	}
-
 	protected void lineSpacePrintln(final Object data) {
 		this.lineSpace();
 		this.println(data);
@@ -21,5 +17,9 @@ public sealed class ConsoleWriter permits InputView, OutputView {
 
 	protected void printf(final String format, final Object... values) {
 		System.out.printf(format, values);
+	}
+
+	private void lineSpace() {
+		this.println(System.lineSeparator());
 	}
 }
