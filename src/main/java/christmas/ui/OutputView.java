@@ -26,7 +26,7 @@ public final class OutputView extends ConsoleWriter {
 		UIMessage.MENU.accept(this::lineSpacePrintln);
 		this.print(menuFormat(orderDetail.getOrderDetail()));
 		UIMessage.ORIGINAL_PAYMENT.accept(this::lineSpacePrintln);
-		this.print(orderDetail.calculateTotalOrderAmount());
+		this.printf("%,d원", orderDetail.calculateTotalOrderAmount());
 	}
 
 	public void print(GiftDetail giftDetail) {
@@ -71,7 +71,7 @@ public final class OutputView extends ConsoleWriter {
 		if (map.isEmpty()) {
 			return NONE;
 		}
-		String format = "%s: -%d원";
+		String format = "%s: -%,d원";
 		StringJoiner joiner = new StringJoiner("\n");
 
 		map.forEach((key, value) -> {
