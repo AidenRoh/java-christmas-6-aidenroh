@@ -3,6 +3,7 @@ package christmas.domain;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 import christmas.domain.constant.Menu;
+import christmas.exception.IllegalMenuException;
 import java.util.Map;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
@@ -17,15 +18,19 @@ import org.junit.jupiter.params.provider.MethodSource;
 @DisplayName("[OrderDetail] 상품 주문 테스트")
 class OrderDetailTest {
 
-	/**
-	 * 1. 음료만 주문한 경우 예외를 터트린다 2. 메뉴판에 없는 메뉴인 경우 예외를 터트린다 3. 정상적으로 주문했을 때, 주어진 자료형과 같은지 4. 정상적으로 주문했을 때, 총가격이 맞는지 5. 주문
-	 * 수가 20개 이상인 경우
-	 */
 	private static Stream<Arguments> successParam() {
 		return Stream.of(
 				arguments(Map.of("양송이수프", 2), Map.of(Menu.MUSHROOM_SOUP, 2)),
 				arguments(Map.of("아이스크림", 2), Map.of(Menu.ICE_CREAM, 2)),
 				arguments(Map.of("바비큐립", 2), Map.of(Menu.BBQ_RIB, 2))
+		);
+	}
+
+	private static Stream<Arguments> failParam() {
+		return Stream.of(
+				arguments(Map.of("제로콜라", 5)),
+				arguments(Map.of("양송이수프", 19, "제로콜라", 3)
+				)
 		);
 	}
 
@@ -38,5 +43,16 @@ class OrderDetailTest {
 		OrderDetail testObject = OrderDetail.of(testInput);
 		//then
 		Assertions.assertThat(testObject.getOrderDetail()).isEqualTo(expectResult);
+	}
+
+	@ParameterizedTest(name = "{0}으로 주문이 들어오면 에외 발생")
+	@MethodSource("failParam")
+	void 비정상적인_입력값에_대한_도메인_예외테스트(Map<String, Integer> input) {
+		//given
+		Map<String, Integer> testInput = input;
+		//when
+		Assertions.assertThatThrownBy(() -> OrderDetail.of(testInput))
+				//then
+				.isInstanceOf(IllegalMenuException.class);
 	}
 }
