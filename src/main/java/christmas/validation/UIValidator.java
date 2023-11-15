@@ -2,7 +2,7 @@ package christmas.validation;
 
 import static christmas.exception.InvalidBookingErrorMessage.NEGATIVE_NUMBER;
 import static christmas.exception.InvalidBookingErrorMessage.NON_NUMERIC;
-import static christmas.exception.InvalidMenuErrorMessage.BAD_DELIMITER;
+import static christmas.exception.InvalidMenuErrorMessage.BAD_DELIMITER_COMMA;
 
 import christmas.domain.constant.Menu;
 import christmas.exception.InvalidBookingErrorMessage;
@@ -21,7 +21,7 @@ public class UIValidator {
 
 	public static void validateOrderMenu(String input) {
 		InvalidMenuErrorMessage.EMPTY_INPUT.findErrorBy(() -> validateEmptyInput(input));
-		BAD_DELIMITER.findErrorBy(() -> validateBadDelimiter(input));
+		BAD_DELIMITER_COMMA.findErrorBy(() -> validateBadDelimiter(input));
 	}
 
 	public static boolean validateEmptyInput(String input) {
@@ -50,9 +50,8 @@ public class UIValidator {
 		return Arrays.stream(menus).anyMatch(String::isBlank);
 	}
 
-	public static boolean validateBlankByHyphen(String input) {
-		String[] menus = input.split("-");
-		return Arrays.stream(menus).anyMatch(String::isBlank);
+	public static boolean validateBadByHyphen(String input) {
+		return input.charAt(0) == '-' || input.charAt(input.length() - 1) == '-';
 	}
 
 	public static boolean validateMenuFormat(String input) {

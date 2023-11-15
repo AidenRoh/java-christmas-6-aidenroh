@@ -4,7 +4,7 @@ import christmas.domain.constant.Menu;
 import java.util.Map;
 
 public class DomainValidator {
-	//예외상황에 true 값이 나오게
+
 	private static final int EVENT_START = 1;
 	private static final int EVENT_END = 31;
 

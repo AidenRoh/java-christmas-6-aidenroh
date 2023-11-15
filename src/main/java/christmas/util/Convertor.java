@@ -1,5 +1,6 @@
 package christmas.util;
 
+import static christmas.exception.InvalidMenuErrorMessage.BAD_DELIMITER_HYPHEN;
 import static christmas.exception.InvalidMenuErrorMessage.BLANK_EXIST;
 import static christmas.exception.InvalidMenuErrorMessage.DUPLICATE_MENU;
 import static christmas.exception.InvalidMenuErrorMessage.INVALID_FORMAT;
@@ -87,7 +88,7 @@ public class Convertor {
 
 	private static String[] splitByHyphen(String value) {
 		INVALID_FORMAT.findErrorBy(() -> UIValidator.validateMenuFormat(value));
-		BLANK_EXIST.findErrorBy(() -> UIValidator.validateBlankByHyphen(value));
+		BAD_DELIMITER_HYPHEN.findErrorBy(() -> UIValidator.validateBadByHyphen(value));
 		return value.split(DELIMITER_HYPHEN);
 	}
 }
