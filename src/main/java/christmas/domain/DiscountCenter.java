@@ -19,7 +19,7 @@ public class DiscountCenter {
 		Map<Discount, Integer> discountDetail = new EnumMap<>(Discount.class);
 		List<DiscountPolicy> viablePolicies = retainViablePolicies(reservationDate);
 
-		if (viablePolicies.isEmpty() || (orderMenu.calculateTotalOrderAmount() <= 10000)) {
+		if (viablePolicies.isEmpty() || (orderMenu.calculateTotalOrderAmount() < 10000)) {
 			return new DiscountDetail(discountDetail);
 		}
 		viablePolicies.forEach(discountPolicy -> discountPolicy.discount(orderMenu.getOrderDetail(), discountDetail));
